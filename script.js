@@ -204,7 +204,6 @@ function decodeMessage() {
             for (let i = 0; i < pixel.length; i += 4) { // Only R, G, and B channels (skip alpha)
                 for (let offset = 0; offset < 3; offset++) {
                     binaryMessage += pixel[i + offset] % 2;
-                    console.log(binaryMessage)
                 }
             }
 
