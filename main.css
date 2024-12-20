@@ -70,7 +70,9 @@ input {
 
 .sectionbody {
     margin-top: 40px;
-    text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .step {
