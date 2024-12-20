@@ -1,149 +1,66 @@
-<html>
-
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <title>Steganography Cyber Security</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-
-<body>
-    <div class="container">
-        <div class="page-header bg-info p-4 rounded">
-            <h1>Apa itu Steganografi?</h1>
-            <p>
-                <strong>Steganografi</strong> adalah teknik menyembunyikan pesan dalam media , seperti gambar atau audio, sehingga hanya penerima yang mengetahui cara membacanya. Dengan Steganography, Anda bisa menyembunyikan pesan Anda di dalam gambar
-                tanpa khawatir ada yang mengetahui isi pesan tersebut.
-            </p>
-        </div>
-        <ul class="nav nav-pills" id="tabs" data-tabs="tabs">
-            <li class="nav-item active" role="presentation">
-                <a href="#encode" data-toggle="tab">Encode</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a href="#decode" data-toggle="tab">Decode</a>
-            </li>
-        </ul>
-
-        <div id="my-tab-content" class="tab-content mt-4">
-            <div class="tab-pane active" id="encode">
-                <div>
-                    <h2>Encode Gambar</h2>
-                    <p class="alert alert-info">
-                        <strong>Encode</strong> berarti menyembunyikan data atau informasi dalam gambar dengan cara yang tidak terlihat oleh mata manusia atau alat standar. Teknik encode digunakan untuk menyembunyikan informasi sensitif atau pribadi dalam
-                        file gambar atau media tanpa mengubah tampilan file tersebut secara visual.
-                    </p>
-                    <form class="form mt-8">
-                        <div class="d-flex flex-row justify-content-between gap-4">
-                            <div style="min-height: 100px" class="d-flex flex-column w-50">
-                                <div class="form-group">
-                                    <h3>Pilih Gambar</h3>
-                                    <input class="form-control input-gambar" type="file" name="baseFile" onchange="previewEncodeImage()" accept="image/*" />
-                                </div>
-                                <div class="images mb-4" style="display: none">
-                                    <div class="original" style="display: none">
-                                        <h3>Original</h3>
-                                        <canvas class="preview-image"></canvas>
-                                    </div>
-                                    <div class="nulled" style="display: none">
-                                        <h3>Normalized</h3>
-                                        <canvas></canvas>
-                                    </div>
-                                    <div class="message" style="display: none">
-                                        <h3>
-                                            Message hidden in image (right click
-                                            <span class="glyphicon glyphicon-arrow-right"></span> save as)
-                                        </h3>
-                                        <canvas></canvas>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group w-50">
-                                <h3>Masukan Text Rahasia:</h3>
-                                <textarea class="form-control message text-rahasia h-auto" rows="3" placeholder="Enter your message here" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button class="encode btn btn-primary p-4 w-100 pull-right" onclick="encodeMessage()">
-                  Encode
-                </button>
-                        </div>
-                    </form>
-                    <div class="clearfix"></div>
-                </div>
-
-                <div class="error" style="display: none"></div>
-                <div class="binary" style="display: none">
-                    <h3>Binary representation of your message</h3>
-                    <textarea class="form-control message" style="word-wrap: break-word">
-            </textarea>
-                </div>
-            </div>
-
-            <div class="tab-pane" id="decode">
-                <div>
-                    <h2>Decode Gambar</h2>
-                    <p class="alert alert-info">
-                        <strong>Decode</strong> adalah proses untuk mengekstrak atau mengungkapkan pesan yang tersembunyi dalam sebuah media.
-                    </p>
-                    <form class="form">
-                        <div class="form-group">
-                            <input class="form-control input-gambar-rahasia" type="file" name="decodeFile" accept="image/*" onchange="previewDecodeImage()" />
-                        </div>
-                        <div class="d-flex flex-row gap-4">
-                            <div class="decode mb-4 w-50" style="display: none">
-                                <h3>Input</h3>
-                                <canvas style="width: 50%"></canvas>
-                            </div>
-                            <div class="binary-decode w-50" style="display: none">
-                                <h3>Text Rahasia:</h3>
-                                <div>
-                                    <h1 class="form-control message h-message" style="word-wrap: break-word font-weight-bold"></h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button class="p-4 decode btn btn-primary w-100 pull-right" onclick="decodeMessage()">
-                  Decode
-                </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link href="main.css" type="text/css" rel="stylesheet" />
+    <script src="sjcl.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <h1>Apa itu Steganografi?</h1>
+    <p>
+      Steganografi adalah teknik menyembunyikan pesan dalam media , seperti
+      gambar atau audio, sehingga hanya penerima yang mengetahui cara
+      membacanya. Dengan Steganography, Anda bisa menyembunyikan pesan Anda di
+      dalam gambar tanpa khawatir ada yang mengetahui isi pesan tersebut.
+    </p>
+    <h1>Pilih Gambar</h1>
+    <div id="main" class="section dark">
+      <img id="preview" class="preview hide" />
+      <div class="sectionbody">
+        <input type="file" id="file" />
+      </div>
+      <div class="left">
+        <textarea
+          id="message"
+          class="message"
+          maxlength="1000"
+          placeholder="Type hidden message"
+        ></textarea>
+        <input
+          type="password"
+          id="password"
+          class="password"
+          placeholder="Password"
+          required
+        />
+        <button id="encode" class="submit">Encode</button>
+      </div>
     </div>
-
-    <style>
-        .preview-image {
-            width: 300px;
-        }
-        
-        .btn {
-            cursor: pointer;
-            font-size: 2em;
-            font-weight: bold;
-        }
-        
-        .h-message {
-            font-size: 1.5em;
-        }
-        
-        p {
-            font-size: 1.2em;
-        }
-        
-        body {
-            background-color: #e6ebf0;
-            color: #000000;
-            font-family: "Poppins", sans-serif;
-            text-align: center;
-        }
-    </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/JavaScript" src="script.js"></script>
-</body>
-
+    <div id="choose" class="section dark hide section-decode">
+      <div>Decode Gambar</div>
+      <div class="sectionbody">
+        <div class="right">
+          <input
+            type="password"
+            id="password2"
+            class="password"
+            placeholder="Password"
+            required
+          />
+          <button id="decode" class="submit">Decode</button>
+        </div>
+      </div>
+    </div>
+    <div id="reveal" class="section dark hide">
+      <h1>Text Rahasia</h1>
+      <div id="messageDecoded" class="sectionbody"></div>
+    </div>
+    <canvas id="canvas" class="hide"></canvas>
+    <img id="output" />
+  </body>
 </html>
